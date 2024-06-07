@@ -33,32 +33,36 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             loadingDiv.style.display = 'none';
-
+            
+            console.log("Data is plenty", data.data.list)
             dataList.innerHTML = '';
 
             const list = data.data.list;
 
-            if (list.length > 0) {
+            const headers = [
+                {title: "Device ID", key: "deviceimei"}, 
+                {title: "SYS", key: "SYS"}, 
+                {title: "DIA", key: "DIA"}, 
+                {title: "PUL", key: "PUL"}, 
+                {title: "Time", key: "createtime"}]
                 const headerRow = document.createElement('tr');
-                const headers = Object.keys(JSON.parse(list[0].readings));
-                headers.forEach(headerText => {
-                    const header = document.createElement('th');
-                    header.textContent = headerText;
-                    headerRow.appendChild(header);
+                headers.forEach(header => {
+                    const _header = document.createElement('th');
+                    _header.textContent = header.title;
+                    headerRow.appendChild(_header);
                 });
-
                 
-                const table = document.createElement('table');
-                table.appendChild(headerRow);
-                table.className = 'readings-table';
-
-               
+            const table = document.createElement('table');
+            table.appendChild(headerRow);
+            table.className = 'readings-table';
+            if (list.length > 0) {
                 list.forEach((item, index) => {
                     const readings = JSON.parse(item.readings);
                     const dataRow = document.createElement('tr');
-                    headers.forEach(headerText => {
+                    headers.forEach(_header => {
                         const cell = document.createElement('td');
-                        cell.textContent = readings[headerText];
+                        console.log(_header, readings)
+                        cell.textContent = readings[_header.key] ?? '-';
                         dataRow.appendChild(cell);
                     });
                     
