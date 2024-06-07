@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    padding: 50px;
+    position: relative;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.readings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.readings-table th, .readings-table td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+    text-size-adjust: 70px;
+}
+
+.readings-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.readings-table th {
+    background-color: #1e88e5;
+    color: white;
+}
+
+#refresh-button {
+    position: absolute;
+    right: 50px;
+    font-size: x-large;
+    color: #1e88e5;
+}
+
+@keyframes blink {
+    0% { background-color: black; }
+    50% { background-color: white; }
+    100% { background-color: black; }
+}
+
+.new-reading {
+    animation: blink 1s linear infinite;
+    color: white;
+}
